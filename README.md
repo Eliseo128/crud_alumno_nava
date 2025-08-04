@@ -1,95 +1,263 @@
-Aquí tienes el **prompt o planteamiento listo para usar**, redactado de forma clara y profesional, ideal para entregar como instrucción en formato Markdown:
 
-```markdown
-# 📝 Proyecto: CRUD de Alumnos con Django y Bootstrap
+Proyecto: Crud Alumno Django con bootstrap.  
+Carpeta de trabajo: CrudAlumno.  
+Carpeta del proyecto: Backend\_alu  
+Carpeta aplicación: app\_alu.  
+Explicación documentada para cada punto del procedimiento  
+procedimiento:
 
-## 🗂️ Estructura del Proyecto
-- **Carpeta de trabajo principal**: `CrudAlumno`
-- **Carpeta del proyecto Django**: `Backend_alu`
-- **Carpeta de la aplicación**: `app_alu`
+1. Instrucciones para crear el entorno virtual y su activación.  
+2. instrucción para seleccionar intérprete de python.  
+3. Instrucción para instalar Django.  
+4. Crear la carpeta “static” dentro de la carpeta app\_alu.  
+5. Crear la carpeta templates dentro de app\_alu.  
+6. Crear los archivos, base.html, header.html, footer.html, inicio.html,agregar\_alumno.html, info\_alumno.html, actualizar\_alumno  
+7. En el archivo inicio.html (título, tabla para mostrarlos alumnos con botones de acción de actualizar y borrar, y al final de la tabla el botón agregar alumno.  
+8. realizar las configuraciones en [setting.py](http://setting.py) y [urls.py](http://urls.py) del proyecto.  
+9. Utilizar un formato elegante.  
+10. No utilizar [forms.py](http://forms.py)  
+11. Crear las funciones en [views.py](http://views.py) para realizar las operaciones del CRUD.  
+12. Al final crear un glosario de términos utilizados con su explicación.  
+13. Tecnologías utilizadas para el frontend y backend.  
+14. Realiza un resumen.  
+15. link de referencias.  
+16. Enseguida envio el [models.py](http://models.py) y [urls.py](http://urls.py) de app\_alu.  
+17. el modelo
 
----
+class Alumno(models.Model):  
+    ESPECIALIDAD\_CHOICES \= \[  
+        ('RH', 'Recursos Humanos'),  
+        (ELO', 'Electrónica'),  
+        ('POG', 'Programación'),  
+        ('GE', 'Gericultura')  
+    \]  
+    nombre \= models.CharField(max\_length=30)  
+    especialidad \= models.CharField(max\_length=100, choices=ESPECIALIDAD\_CHOICES, default='RH')  
+    matricula \= models.CharField(max\_length=10, unique=True)
 
-## 🧩 Instrucciones Generales
+18. El urls.py
 
-Crea un sistema completo de gestión de alumnos (CRUD) utilizando **Django** como framework backend y **Bootstrap** para el diseño frontend. No se debe utilizar `forms.py`. Todo el proceso debe estar debidamente documentado con explicaciones claras para cada paso.
+from django.urls import path  
+from . import views
 
----
+urlpatterns \= \[  
+    path("", views.inicio, name='inicio'),  
+    path("agregar/", views.agregar\_alumno, name='agregar\_alumno'),  
+    path("actualizar/\<int:student\_id\>/", views.actualizar\_alumno, name="actualizar\_alumno"),  
+    path("borrar/\<int:id\>/", views.borrar\_alumno, name="borrar\_alumno"),  
+\]
 
-## 🔧 Procedimiento Requerido
+19. Al inicio crear la estructura de carpetas y archivos.  
+20. No se te olvide crear los archivos html para las operaciones del CRUD.
 
-Realiza los siguientes pasos de manera ordenada y documentada:
+    
 
-1. **Crear el entorno virtual y activarlo**
-   - Instrucciones detalladas para crear y activar el entorno virtual en diferentes sistemas operativos.
 
-2. **Seleccionar el intérprete de Python**
-   - Indicaciones para configurar correctamente el intérprete en tu editor (ej. VS Code).
 
-3. **Instalar Django**
-   - Comando para instalar Django mediante `pip`.
-
-4. **Crear carpetas necesarias dentro de `app_alu`**
-   - Crear la carpeta `static`.
-   - Crear la carpeta `templates`.
-
-5. **Crear archivos HTML en `templates/`**
-   - `base.html`: Plantilla base con estructura HTML5.
-   - `header.html`: Encabezado común (navbar).
-   - `footer.html`: Pie de página.
-   - `inicio.html`: Página principal con tabla de alumnos.
-   - `agregar_alumno.html`: Formulario para agregar alumno.
-   - `info_alumno.html`: Vista detallada del alumno (opcional).
-   - `actualizar_alumno.html`: Formulario para editar alumno.
-
-6. **Contenido del archivo `inicio.html`**
-   - Título claro.
-   - Tabla que muestre la lista de alumnos con las columnas: Nombre, Matrícula y Especialidad.
-   - En cada fila, incluir botones de acción: **Actualizar** y **Borrar**.
-   - Al final de la tabla, agregar un botón claramente visible: **Agregar Alumno**.
-
-7. **Configuraciones en archivos del proyecto**
-   - Realizar las configuraciones necesarias en `settings.py`:
-     - Agregar `app_alu` a `INSTALLED_APPS`.
-     - Configurar `TEMPLATES` para incluir la carpeta `templates`.
-     - Configurar `STATICFILES_DIRS` para incluir la carpeta `static`.
-   - Configurar `urls.py` del proyecto (`Backend_alu/urls.py`) para incluir las URLs de la aplicación.
-
-8. **Diseño y formato**
-   - Utilizar **Bootstrap 5** (vía CDN) para lograr un diseño elegante, moderno y responsive.
-   - Asegurar que todas las páginas extiendan `base.html`.
-
-9. **Lógica del CRUD en `views.py`**
-   - Crear funciones para:
-     - `inicio`: Mostrar lista de alumnos.
-     - `agregar_alumno`: Guardar nuevo alumno.
-     - `actualizar_alumno`: Editar alumno existente.
-     - `borrar_alumno`: Eliminar alumno.
-   - No usar `forms.py`, manejar los datos directamente desde `request.POST`.
-
-10. **Estructura inicial**
-    - Al inicio, crear toda la estructura de carpetas y archivos necesarios.
-    - No olvidar incluir todos los archivos HTML para las operaciones del CRUD.
+¡Excelente proyecto! Aquí tienes una guía completa y documentada para desarrollar tu CRUD de Alumnos utilizando Django y Bootstrap, siguiendo al pie de la letra tus especificaciones.
 
 ---
 
-## 📚 Contenido Final Requerido
+### **Proyecto: CRUD de Alumnos con Django y Bootstrap**
 
-Al concluir, el documento debe incluir:
-
-- ✅ **Glosario de términos**: Definir y explicar los términos clave utilizados (ej. CRUD, Django, Bootstrap, entorno virtual, etc.).
-- ✅ **Tecnologías utilizadas**: Listar tecnologías del frontend y backend con breves descripciones.
-- ✅ **Resumen del proyecto**: Descripción concisa del sistema, funcionalidades y propósito.
-- ✅ **Enlaces de referencia**: Incluir URLs a documentación oficial de Django, Bootstrap y otros recursos útiles.
+Este documento detalla el proceso de creación de una aplicación web para la gestión de alumnos (Crear, Leer, Actualizar, Borrar) utilizando el framework Django para el backend y Bootstrap para un diseño frontal limpio y responsivo.
 
 ---
 
-## 📎 Adjuntos (a considerar después del prompt)
+### **Estructura Final de Carpetas y Archivos**
 
-> A continuación, se proporcionan el modelo y las URLs de la aplicación `app_alu`:
+Antes de comenzar, visualicemos la estructura que vamos a construir. Esto nos dará un mapa claro del proyecto.
 
-### `models.py`
+```
+CrudAlumno/
+├── Backend_alu/
+│   ├── Backend_alu/
+│   │   ├── __init__.py
+│   │   ├── asgi.py
+│   │   ├── settings.py  <-- Configuraremos aquí
+│   │   ├── urls.py      <-- Configuraremos aquí
+│   │   └── wsgi.py
+│   ├── app_alu/
+│   │   ├── migrations/
+│   │   ├── static/      <-- Carpeta para CSS, JS, imágenes
+│   │   │   └── css/
+│   │   │       └── style.css (Opcional)
+│   │   ├── templates/   <-- Carpeta para HTML
+│   │   │   ├── agregar_alumno.html
+│   │   │   ├── actualizar_alumno.html
+│   │   │   ├── base.html
+│   │   │   ├── footer.html
+│   │   │   ├── header.html
+│   │   │   └── inicio.html
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py    <-- Definiremos el modelo aquí
+│   │   ├── tests.py
+│   │   ├── urls.py      <-- Definiremos las rutas de la app aquí
+│   │   └── views.py     <-- Escribiremos la lógica aquí
+│   └── manage.py
+└── venv/                  <-- Entorno virtual
+```
+
+---
+
+### **Procedimiento Detallado**
+
+#### **Paso 1: Crear el Entorno Virtual**
+
+Un entorno virtual es una carpeta que contiene una instalación de Python independiente. Esto nos permite aislar las dependencias de nuestro proyecto para no generar conflictos con otros proyectos.
+
+1.  Abre una terminal o línea de comandos.
+2.  Navega hasta la carpeta donde quieres crear tu proyecto (por ejemplo, `Documentos/Proyectos/`).
+3.  Crea la carpeta de trabajo principal y entra en ella.
+
+    ```bash
+    mkdir CrudAlumno
+    cd CrudAlumno
+    ```
+
+4.  Crea el entorno virtual. Usaremos el módulo `venv` que viene con Python. Le llamaremos `venv`.
+
+    ```bash
+    # En Windows
+    python -m venv venv
+
+    # En macOS / Linux
+    python3 -m venv venv
+    ```
+
+#### **Paso 2: Activar el Entorno Virtual y Seleccionar Intérprete**
+
+Para usar el entorno, primero debemos activarlo.
+
+*   **Activación en la terminal:**
+
+    ```bash
+    # En Windows (cmd.exe)
+    venv\Scripts\activate
+
+    # En Windows (PowerShell)
+    venv\Scripts\Activate.ps1
+
+    # En macOS / Linux
+    source venv/bin/activate
+    ```
+
+    Una vez activado, verás `(venv)` al inicio de la línea de tu terminal.
+
+*   **Seleccionar Intérprete en VS Code (Recomendado):**
+    1.  Abre la carpeta `CrudAlumno` en Visual Studio Code.
+    2.  Abre la Paleta de Comandos: `Ctrl+Shift+P` (o `Cmd+Shift+P` en Mac).
+    3.  Escribe y selecciona: `Python: Select Interpreter`.
+    4.  Elige el intérprete que tiene la ruta a tu entorno virtual (`./venv/Scripts/python.exe` o `./venv/bin/python`). VS Code a menudo lo sugiere como "Recomendado".
+
+#### **Paso 3: Instalar Django y Crear el Proyecto**
+
+Con el entorno activado, instalamos Django y creamos la estructura del proyecto y la aplicación.
+
+```bash
+# Instalar Django
+pip install django
+
+# Crear el proyecto Django llamado Backend_alu
+# El punto (.) al final evita crear una carpeta extra del mismo nombre
+django-admin startproject Backend_alu .
+
+# Crear la aplicación llamada app_alu
+python manage.py startapp app_alu
+```
+
+#### **Paso 4: Crear Carpetas `static` y `templates`**
+
+Dentro de la carpeta de la aplicación (`app_alu`), crearemos los directorios para los archivos estáticos (CSS, JS) y las plantillas (HTML).
+
+```bash
+# Desde la carpeta raíz (CrudAlumno)
+# Crear la carpeta templates
+mkdir app_alu/templates
+
+# Crear la carpeta static
+mkdir app_alu/static
+```
+
+#### **Paso 5: Configuración del Proyecto (`settings.py` y `urls.py`)**
+
+Ahora, conectaremos todo en los archivos de configuración principales.
+
+**A. Archivo `Backend_alu/settings.py`:**
+
+1.  **Registrar la aplicación:** Añade `'app_alu'` a la lista `INSTALLED_APPS`.
+
+    ```python
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'app_alu', # <-- AÑADIR ESTA LÍNEA
+    ]
+    ```
+
+2.  **Configurar la carpeta de plantillas:** Dile a Django dónde buscar los archivos HTML.
+
+    ```python
+    import os # Asegúrate de que 'import os' esté al principio del archivo
+
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            # AÑADIR ESTA LÍNEA
+            'DIRS': [os.path.join(BASE_DIR, 'app_alu/templates')],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
+        },
+    ]
+    ```
+
+3.  **Configurar la carpeta de archivos estáticos (opcional pero recomendado):**
+
+    ```python
+    # Al final del archivo settings.py
+    STATIC_URL = 'static/'
+
+    # AÑADIR ESTAS LÍNEAS
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'app_alu/static'),
+    ]
+    ```
+
+**B. Archivo `Backend_alu/urls.py`:**
+
+Configura la URL principal del proyecto para que redirija las peticiones a nuestra aplicación `app_alu`.
+
 ```python
+from django.contrib import admin
+from django.urls import path, include # <-- Importar 'include'
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('app_alu.urls')), # <-- AÑADIR ESTA LÍNEA
+]
+```
+
+#### **Paso 6: Definir el Modelo (`app_alu/models.py`)**
+
+Este archivo define la estructura de la tabla `Alumno` en la base de datos. Pega el código que proporcionaste.
+
+```python
+# app_alu/models.py
+from django.db import models
+
 class Alumno(models.Model):
     ESPECIALIDAD_CHOICES = [
         ('RH', 'Recursos Humanos'),
@@ -105,269 +273,215 @@ class Alumno(models.Model):
         return self.nombre
 ```
 
-### `urls.py` (de `app_alu`)
-```python
-from django.urls import path
-from . import views
+#### **Paso 7: Realizar Migraciones**
 
-urlpatterns = [
-    path("", views.inicio, name='inicio'),
-    path("agregar/", views.agregar_alumno, name='agregar_alumno'),
-    path("actualizar/<int:student_id>/", views.actualizar_alumno, name="actualizar_alumno"),
-    path("borrar/<int:id>/", views.borrar_alumno, name="borrar_alumno"),
-]
-```
-
----
-
-> ⚠️ **Nota**: Asegúrate de ejecutar las migraciones después de definir el modelo:
-> ```bash
-> python manage.py makemigrations
-> python manage.py migrate
-> ```
-```
-
-Este prompt está listo para ser usado como guía de proyecto para estudiantes o desarrolladores, y puede entregarse directamente en entornos educativos o de trabajo.
-
-
-
-# 📁 Proyecto: CRUD de Alumnos con Django y Bootstrap
-
-> **Descripción**: Sistema web para gestionar alumnos utilizando Django como framework backend y Bootstrap para una interfaz moderna y responsiva.
-
----
-
-## 🗂️ Estructura del Proyecto
-
-```
-CrudAlumno/
-├── Backend_alu/                  # Proyecto Django principal
-│   ├── __init__.py
-│   ├── settings.py
-│   ├── urls.py
-│   ├── wsgi.py
-│   └── asgi.py
-│
-├── app_alu/                      # Aplicación Django
-│   ├── __init__.py
-│   ├── models.py
-│   ├── views.py
-│   ├── urls.py
-│   ├── templates/                # Plantillas HTML
-│   │   ├── base.html
-│   │   ├── header.html
-│   │   ├── footer.html
-│   │   ├── inicio.html
-│   │   ├── agregar_alumno.html
-│   │   ├── info_alumno.html
-│   │   └── actualizar_alumno.html
-│   └── static/                   # Archivos estáticos
-│       └── css/
-│           └── styles.css
-│
-├── manage.py
-└── venv/                         # Entorno virtual (generado localmente)
-```
-
----
-
-## 🔧 Procedimiento Paso a Paso
-
-### 1. 🖥️ Crear el entorno virtual y activarlo
-
-Un entorno virtual permite aislar las dependencias del proyecto.
+Las migraciones son la forma en que Django aplica los cambios de tus modelos (como crear una nueva tabla) a la base de datos.
 
 ```bash
-# Crear entorno virtual
-python -m venv venv
+# Crea el archivo de migración basado en los cambios del models.py
+python manage.py makemigrations
 
-# Activar entorno (Windows)
-venv\Scripts\activate
-
-# Activar entorno (Linux/Mac)
-source venv/bin/activate
+# Aplica la migración a la base de datos
+python manage.py migrate
 ```
 
-✅ Verifica que el entorno esté activo (verás `(venv)` al inicio de la terminal).
+#### **Paso 8: Crear las Plantillas HTML (`app_alu/templates/`)**
 
----
+Ahora creamos los archivos HTML. Usaremos la herencia de plantillas de Django para no repetir código.
 
-### 2. 🐍 Seleccionar el intérprete de Python
-
-En editores como **VS Code**:
-
-1. Abre el proyecto.
-2. Presiona `Ctrl + Shift + P` → Escribe: `Python: Select Interpreter`.
-3. Elige el intérprete dentro de `venv/`.
-
-> Esto asegura que uses el entorno virtual correctamente.
-
----
-
-### 3. 📦 Instalar Django
-
-Con el entorno activado, instala Django:
-
-```bash
-pip install django
-```
-
-> ✅ Verifica la instalación:
-```bash
-python -m django --version
-```
-
----
-
-### 4. 📁 Crear carpetas `static` y `templates` en `app_alu`
-
-Dentro de la carpeta `app_alu`, crea:
-
-```bash
-mkdir templates
-mkdir -p static/css
-```
-
-- `templates/`: Almacena archivos HTML dinámicos.
-- `static/`: Contiene CSS, JS e imágenes.
-
----
-
-### 5. 📄 Crear archivos HTML en `templates/`
-
-Crea los siguientes archivos:
-
-| Archivo | Descripción |
-|--------|-------------|
-| `base.html` | Plantilla base con estructura HTML y enlaces a Bootstrap |
-| `header.html` | Barra de navegación común |
-| `footer.html` | Pie de página |
-| `inicio.html` | Lista de alumnos con botones de acción |
-| `agregar_alumno.html` | Formulario para agregar alumno |
-| `actualizar_alumno.html` | Formulario para editar alumno |
-| `info_alumno.html` | Vista detallada del alumno (opcional) |
-
----
-
-### 6. 🎨 Diseño elegante con Bootstrap
-
-En `base.html`, usa **Bootstrap 5** desde CDN para un diseño moderno y responsivo.
+**`base.html` (Plantilla Maestra)**
+Contiene la estructura HTML base, incluyendo Bootstrap y bloques que otras plantillas llenarán.
 
 ```html
-<!-- base.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF--8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}CRUD Alumnos{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>{% block title %}Sistema de Alumnos{% endblock %}</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
+
     {% include 'header.html' %}
-    <div class="container mt-5">
-        {% block content %}{% endblock %}
-    </div>
+
+    <main class="container mt-4">
+        {% block content %}
+        <!-- El contenido de cada página irá aquí -->
+        {% endblock %}
+    </main>
+
     {% include 'footer.html' %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap 5.3 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 ```
 
----
+**`header.html` (Cabecera)**
 
-### 7. ⚙️ Configuraciones en `settings.py`
-
-#### A. Agregar la app y configurar rutas
-
-```python
-# Backend_alu/settings.py
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'app_alu',  # ← Nombre de tu aplicación
-]
-
-# Directorio de plantillas
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'app_alu' / 'templates'],  # Ruta a templates
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
-# Archivos estáticos
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'app_alu' / 'static']
-
-# Base de datos (por defecto SQLite)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+```html
+<header class="bg-primary text-white p-4 text-center shadow-sm">
+    <h1>Gestión de Alumnos - CBTis 168</h1>
+</header>
 ```
 
-#### B. Configurar URLs del proyecto (`Backend_alu/urls.py`)
+**`footer.html` (Pie de Página)**
 
-```python
-from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('app_alu.urls')),  # Incluye las URLs de la app
-]
+```html
+<footer class="container-fluid bg-dark text-white text-center p-3 mt-5">
+    <p>&copy; 2023 Mi Proyecto CRUD. Todos los derechos reservados.</p>
+</footer>
 ```
 
----
+**`inicio.html` (Página Principal - Leer)**
+Muestra la lista de alumnos en una tabla.
 
-### 8. 📄 Modelo: `models.py`
+```html
+{% extends 'base.html' %}
 
-```python
-# app_alu/models.py
-from django.db import models
+{% block title %}Inicio - Lista de Alumnos{% endblock %}
 
-class Alumno(models.Model):
-    ESPECIALIDAD_CHOICES = [
-        ('RH', 'Recursos Humanos'),
-        ('ELO', 'Electrónica'),
-        ('POG', 'Programación'),
-        ('GE', 'Gericultura'),
-    ]
-    nombre = models.CharField(max_length=30)
-    especialidad = models.CharField(max_length=100, choices=ESPECIALIDAD_CHOICES, default='RH')
-    matricula = models.CharField(max_length=10, unique=True)
-
-    def __str__(self):
-        return f"{self.nombre} ({self.matricula})"
+{% block content %}
+<div class="card shadow">
+    <div class="card-header bg-dark text-white">
+        <h2 class="h4 mb-0">Listado de Alumnos Registrados</h2>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nombre Completo</th>
+                        <th>Matrícula</th>
+                        <th>Especialidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for alumno in alumnos %}
+                    <tr>
+                        <td>{{ alumno.nombre }}</td>
+                        <td>{{ alumno.matricula }}</td>
+                        <td>{{ alumno.get_specialidad_display }}</td> <!-- Muestra el nombre legible -->
+                        <td>
+                            <a href="{% url 'actualizar_alumno' alumno.id %}" class="btn btn-warning btn-sm">Actualizar</a>
+                            
+                            <!-- Formulario para Borrar con método POST para seguridad -->
+                            <form action="{% url 'borrar_alumno' alumno.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar a este alumno?');">Borrar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">No hay alumnos registrados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer text-end">
+        <a href="{% url 'agregar_alumno' %}" class="btn btn-success">
+            <i class="fas fa-plus"></i> Agregar Nuevo Alumno
+        </a>
+    </div>
+</div>
+{% endblock %}
 ```
 
-> 🔁 Ejecuta migraciones después:
-```bash
-python manage.py makemigrations
-python manage.py migrate
+**`agregar_alumno.html` (Formulario para Crear)**
+
+```html
+{% extends 'base.html' %}
+
+{% block title %}Agregar Alumno{% endblock %}
+
+{% block content %}
+<div class="card shadow mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-success text-white">
+        <h2 class="h4 mb-0">Registrar Nuevo Alumno</h2>
+    </div>
+    <div class="card-body">
+        <form action="{% url 'agregar_alumno' %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre Completo:</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="matricula" class="form-label">Matrícula:</label>
+                <input type="text" name="matricula" id="matricula" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="especialidad" class="form-label">Especialidad:</label>
+                <select name="especialidad" id="especialidad" class="form-select" required>
+                    {% for value, display in especialidades %}
+                        <option value="{{ value }}">{{ display }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{% url 'inicio' %}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Guardar Alumno</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
 ```
 
----
+**`actualizar_alumno.html` (Formulario para Actualizar)**
 
-### 9. 🔄 URLs de la aplicación: `urls.py`
+```html
+{% extends 'base.html' %}
+
+{% block title %}Actualizar Alumno{% endblock %}
+
+{% block content %}
+<div class="card shadow mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-warning text-dark">
+        <h2 class="h4 mb-0">Actualizar Datos del Alumno</h2>
+    </div>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre Completo:</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" value="{{ alumno.nombre }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="matricula" class="form-label">Matrícula:</label>
+                <input type="text" name="matricula" id="matricula" class="form-control" value="{{ alumno.matricula }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="especialidad" class="form-label">Especialidad:</label>
+                <select name="especialidad" id="especialidad" class="form-select" required>
+                    {% for value, display in especialidades %}
+                        <option value="{{ value }}" {% if alumno.especialidad == value %}selected{% endif %}>
+                            {{ display }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{% url 'inicio' %}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Actualizar Alumno</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+```
+*Nota: El archivo `info_alumno.html` no se ha creado ya que no está en las URLs, pero podría ser una página de solo lectura si se desea.*
+
+#### **Paso 9: Definir las URLs de la Aplicación (`app_alu/urls.py`)**
+
+Crea este archivo si no existe y pega el código que proporcionaste, asegurándote de que los nombres de las vistas coincidan.
 
 ```python
 # app_alu/urls.py
@@ -375,174 +489,128 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    # READ: Página de inicio que muestra todos los alumnos
     path("", views.inicio, name='inicio'),
+    
+    # CREATE: Ruta para mostrar el formulario y para procesar la adición de un alumno
     path("agregar/", views.agregar_alumno, name='agregar_alumno'),
-    path("actualizar/<int:student_id>/", views.actualizar_alumno, name="actualizar_alumno"),
+    
+    # UPDATE: Ruta para actualizar un alumno específico por su ID
+    path("actualizar/<int:id>/", views.actualizar_alumno, name="actualizar_alumno"),
+    
+    # DELETE: Ruta para borrar un alumno específico por su ID
     path("borrar/<int:id>/", views.borrar_alumno, name="borrar_alumno"),
 ]
 ```
 
----
+#### **Paso 10: Crear las Funciones en `views.py`**
 
-### 10. 🧠 Lógica del CRUD en `views.py`
+Aquí reside la lógica del CRUD. Django recibirá las peticiones, estas funciones las procesarán y devolverán una respuesta (generalmente, renderizando un HTML).
 
 ```python
 # app_alu/views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Alumno
 
+# CREATE (Crear) y READ (Leer - parte del formulario)
+def agregar_alumno(request):
+    especialidades = Alumno.ESPECIALIDAD_CHOICES
+    
+    if request.method == 'POST':
+        # Obtenemos los datos del formulario
+        nombre = request.POST.get('nombre')
+        matricula = request.POST.get('matricula')
+        especialidad = request.POST.get('especialidad')
+        
+        # Creamos una nueva instancia de Alumno y la guardamos
+        Alumno.objects.create(
+            nombre=nombre,
+            matricula=matricula,
+            especialidad=especialidad
+        )
+        # Redirigimos a la página de inicio para ver la lista actualizada
+        return redirect('inicio')
+        
+    # Si es un GET, solo mostramos el formulario
+    return render(request, 'agregar_alumno.html', {'especialidades': especialidades})
+
+# READ (Leer - lista principal)
 def inicio(request):
+    # Obtenemos todos los objetos Alumno de la base de datos
     alumnos = Alumno.objects.all()
+    # Pasamos los alumnos a la plantilla para que los muestre
     return render(request, 'inicio.html', {'alumnos': alumnos})
 
-def agregar_alumno(request):
-    if request.method == 'POST':
-        nombre = request.POST['nombre']
-        matricula = request.POST['matricula']
-        especialidad = request.POST['especialidad']
-        Alumno.objects.create(nombre=nombre, matricula=matricula, especialidad=especialidad)
-        return redirect('inicio')
-    return render(request, 'agregar_alumno.html')
-
-def actualizar_alumno(request, student_id):
-    alumno = get_object_or_404(Alumno, id=student_id)
-    if request.method == 'POST':
-        alumno.nombre = request.POST['nombre']
-        alumno.matricula = request.POST['matricula']
-        alumno.especialidad = request.POST['especialidad']
-        alumno.save()
-        return redirect('inicio')
-    return render(request, 'actualizar_alumno.html', {'alumno': alumno})
-
-def borrar_alumno(request, id):
+# UPDATE (Actualizar)
+def actualizar_alumno(request, id):
+    # Obtenemos el alumno específico o mostramos un error 404 si no existe
     alumno = get_object_or_404(Alumno, id=id)
-    alumno.delete()
+    especialidades = Alumno.ESPECIALIDAD_CHOICES
+
+    if request.method == 'POST':
+        # Actualizamos los campos del alumno con los datos del formulario
+        alumno.nombre = request.POST.get('nombre')
+        alumno.matricula = request.POST.get('matricula')
+        alumno.especialidad = request.POST.get('especialidad')
+        alumno.save() # Guardamos los cambios en la base de datos
+        return redirect('inicio')
+    
+    # Si es GET, pasamos el alumno y las especialidades a la plantilla de actualización
+    context = {
+        'alumno': alumno,
+        'especialidades': especialidades
+    }
+    return render(request, 'actualizar_alumno.html', context)
+
+# DELETE (Borrar)
+def borrar_alumno(request, id):
+    # Obtenemos el alumno a borrar
+    alumno = get_object_or_404(Alumno, id=id)
+    
+    # Solo permitimos borrar vía POST por seguridad
+    if request.method == 'POST':
+        alumno.delete() # Borramos el objeto de la base de datos
+        return redirect('inicio')
+    
+    # Si alguien intenta acceder por GET, lo redirigimos
     return redirect('inicio')
 ```
 
 ---
 
-### 11. 🖼️ Plantilla `inicio.html`
+### **Finalización del Proyecto**
 
-```html
-<!-- templates/inicio.html -->
-{% extends 'base.html' %}
-{% block content %}
-<h2 class="text-center mb-4">📋 Gestión de Alumnos</h2>
+#### **Tecnologías Utilizadas**
 
-<table class="table table-striped table-bordered table-hover shadow-sm">
-    <thead class="table-primary">
-        <tr>
-            <th>Nombre</th>
-            <th>Matrícula</th>
-            <th>Especialidad</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for alumno in alumnos %}
-        <tr>
-            <td>{{ alumno.nombre }}</td>
-            <td>{{ alumno.matricula }}</td>
-            <td>{{ alumno.get_especialidad_display }}</td>
-            <td>
-                <a href="{% url 'actualizar_alumno' alumno.id %}" class="btn btn-warning btn-sm">✏️ Editar</a>
-                <a href="{% url 'borrar_alumno' alumno.id %}" class="btn btn-danger btn-sm"
-                   onclick="return confirm('¿Estás seguro de eliminar a {{ alumno.nombre }}?')">🗑️ Borrar</a>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4" class="text-center text-muted">No hay alumnos registrados.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+*   **Backend:**
+    *   **Python:** Lenguaje de programación principal.
+    *   **Django:** Framework web de alto nivel para un desarrollo rápido y seguro.
+    *   **Django ORM:** Mapeador Objeto-Relacional para interactuar con la base de datos (SQLite por defecto) usando objetos de Python.
+*   **Frontend:**
+    *   **HTML5:** Lenguaje de marcado para la estructura de las páginas.
+    *   **Bootstrap 5:** Framework de CSS para crear diseños responsivos y elegantes rápidamente.
+    *   **Django Template Language:** Sistema de plantillas para generar HTML dinámicamente.
 
-<div class="text-center mt-3">
-    <a href="{% url 'agregar_alumno' %}" class="btn btn-success btn-lg">➕ Agregar Alumno</a>
-</div>
-{% endblock %}
-```
+#### **Glosario de Términos Utilizados**
 
----
+*   **CRUD:** Acrónimo de **C**reate (Crear), **R**ead (Leer), **U**pdate (Actualizar), **D**elete (Borrar). Son las cuatro operaciones básicas de la persistencia de datos.
+*   **Entorno Virtual (venv):** Un directorio aislado que contiene una instalación de Python y paquetes específicos para un proyecto, evitando conflictos de dependencias.
+*   **Django:** Un framework web de Python que sigue el patrón de arquitectura Modelo-Vista-Plantilla (MVT).
+*   **Framework:** Un conjunto de herramientas y librerías que proporciona una estructura base para desarrollar software.
+*   **ORM (Object-Relational Mapping):** Técnica que permite interactuar con una base de datos relacional (como si fueran tablas) utilizando un lenguaje de programación orientado a objetos (como Python). El `models.py` de Django es su ORM.
+*   **Migración:** Un archivo generado por Django que describe los cambios en los modelos para ser aplicados a la base de datos.
+*   **Plantilla (Template):** Un archivo (generalmente HTML) que contiene la estructura de la vista, con marcadores de posición para datos dinámicos.
+*   **Vista (View):** Una función en Django que procesa una solicitud web y devuelve una respuesta. Es la lógica de negocio de la aplicación.
+*   **URL Dispatcher:** El sistema de Django que, basado en la URL solicitada, decide qué vista debe ejecutar.
+*   **Bootstrap:** Un popular framework de frontend para diseñar sitios web responsivos y visualmente atractivos con componentes pre-construidos.
+*   **CSRF Token (`{% csrf_token %}`):** Medida de seguridad de Django para proteger los formularios contra ataques de Falsificación de Solicitud en Sitios Cruzados.
 
-## 📘 Glosario de Términos
+#### **Resumen del Proyecto**
 
-| Término | Definición |
-|--------|-----------|
-| **CRUD** | Siglas de Crear, Leer, Actualizar y Eliminar. Operaciones básicas en bases de datos. |
-| **Django** | Framework web de Python de alto nivel para desarrollo rápido y seguro. |
-| **Bootstrap** | Framework CSS para crear interfaces web responsivas y atractivas. |
-| **Entorno Virtual** | Espacio aislado para gestionar paquetes y dependencias de Python. |
-| **Template** | Archivo HTML con lógica dinámica (usando el lenguaje de plantillas de Django). |
-| **View** | Función o clase que maneja una solicitud HTTP y devuelve una respuesta. |
-| **URL Mapping** | Relación entre una URL y una vista específica. |
-| **Static Files** | Recursos como CSS, JS e imágenes que no cambian con el tiempo. |
-| **Model** | Clase que representa una tabla en la base de datos. |
-| **CSRF Token** | Mecanismo de seguridad para prevenir ataques de falsificación de solicitudes. |
+Se ha construido una aplicación web completa que permite gestionar un listado de alumnos. El proyecto utiliza Django para toda la lógica de backend, incluyendo la definición del modelo de datos, el manejo de peticiones HTTP y la interacción con la base de datos a través de su ORM. No se utilizó el sistema de formularios de Django (`forms.py`) para manejar la validación y renderizado, optando por procesar los datos del formulario manualmente desde el objeto `request` en las vistas. Para el frontend, se empleó Bootstrap 5 para garantizar una interfaz de usuario moderna, limpia y adaptable a diferentes dispositivos, utilizando la herencia de plantillas de Django para mantener el código HTML organizado y reutilizable.
 
----
+#### **Link de Referencias**
 
-## 🛠️ Tecnologías Utilizadas
-
-### Backend
-- **Python 3.8+**
-- **Django 4.x**
-- **SQLite** (Base de datos por defecto)
-
-### Frontend
-- **HTML5**
-- **CSS3 / Bootstrap 5**
-- **JavaScript** (para confirmación de eliminación)
-
----
-
-## 📝 Resumen del Proyecto
-
-Este proyecto implementa un sistema completo de gestión de alumnos utilizando Django como backend y Bootstrap para una interfaz moderna, sin el uso de `forms.py`. Las operaciones CRUD se gestionan directamente en las vistas y plantillas, lo que facilita el entendimiento del flujo de datos. La estructura es clara, modular y fácil de extender.
-
-✅ Funcionalidades:
-- Listar alumnos en una tabla con formato elegante.
-- Agregar nuevos registros.
-- Editar información existente.
-- Eliminar con confirmación.
-- Interfaz responsive y amigable.
-
-Ideal para estudiantes o desarrolladores que están aprendiendo Django.
-
----
-
-## 🔗 Referencias
-
-1. [Documentación Oficial de Django](https://docs.djangoproject.com/)
-2. [Bootstrap 5 Documentation](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
-3. [Mozilla Developer Network - Django](https://developer.mozilla.org/es/docs/Learn/Server-side/Django)
-4. [Django for Beginners - William Vincent](https://djangoforbeginners.com/)
-
----
-
-## ✅ Pasos Finales
-
-1. Ejecuta las migraciones:
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
-
-2. Crea un superusuario (opcional, para admin):
-```bash
-python manage.py createsuperuser
-```
-
-3. Inicia el servidor:
-```bash
-python manage.py runserver
-```
-
-4. Accede en tu navegador: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
----
-
-> 🚀 ¡Listo! Ya tienes un sistema funcional de gestión de alumnos con Django y Bootstrap.  
-> Si deseas, puedo ayudarte a generar los archivos faltantes o exportar todo como un paquete.
+*   **Documentación oficial de Django:** [https://docs.djangoproject.com/en/stable/](https://docs.djangoproject.com/en/stable/)
+*   **Documentación oficial de Bootstrap:** [https://getbootstrap.com/docs/5.3/getting-started/introduction/](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+*   **Guía de instalación de Python:** [https://www.python.org/downloads/](https://www.python.org/downloads/)
