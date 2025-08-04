@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Alumno{% endblock %}
+
+{% block content %}
+<div class="card shadow mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-success text-white">
+        <h2 class="h4 mb-0">Registrar Nuevo Alumno</h2>
+    </div>
+    <div class="card-body">
+        <form action="{% url 'agregar_alumno' %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre Completo:</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="matricula" class="form-label">Matrícula:</label>
+                <input type="text" name="matricula" id="matricula" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="especialidad" class="form-label">Especialidad:</label>
+                <select name="especialidad" id="especialidad" class="form-select" required>
+                    {% for value, display in especialidades %}
+                        <option value="{{ value }}">{{ display }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{% url 'inicio' %}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Guardar Alumno</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
