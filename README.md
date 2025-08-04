@@ -1,38 +1,112 @@
-leeme
-Proyecto: Crud Alumno Django con bootstrap.
-Carpeta de trabajo: CrudAlumno.
-Carpeta del proyecto: Backend_alu
-Carpeta aplicación: app_alu.
-Explicación documentada para cada punto del procedimiento
-procedimiento:
-Instrucciones para crear el entorno virtual y su activación.
-instrucción para seleccionar intérprete de python.
-Instrucción para instalar Django.
-Crear la carpeta “static” dentro de la carpeta app_alu.
-Crear la carpeta templates dentro de app_alu.
-Crear los archivos, base.html, header.html, footer.html, inicio.html,agregar_alumno.html, info_alumno.html, actualizar_alumno
-En el archivo inicio.html (título, tabla para mostrarlos alumnos con botones de acción de actualizar y borrar, y al final de la tabla el botón agregar alumno.
-realizar las configuraciones en setting.py y urls.py del proyecto.
-Utilizar un formato elegante.
-No utilizar forms.py
-Crear las funciones en views.py para realizar las operaciones del CRUD.
-Al final crear un glosario de términos utilizados con su explicación.
-Tecnologías utilizadas para el frontend y backend.
-Realiza un resumen.
-link de referencias.
-Enseguida envio el models.py y urls.py de app_alu.
-el modelo
+Aquí tienes el **prompt o planteamiento listo para usar**, redactado de forma clara y profesional, ideal para entregar como instrucción en formato Markdown:
+
+```markdown
+# 📝 Proyecto: CRUD de Alumnos con Django y Bootstrap
+
+## 🗂️ Estructura del Proyecto
+- **Carpeta de trabajo principal**: `CrudAlumno`
+- **Carpeta del proyecto Django**: `Backend_alu`
+- **Carpeta de la aplicación**: `app_alu`
+
+---
+
+## 🧩 Instrucciones Generales
+
+Crea un sistema completo de gestión de alumnos (CRUD) utilizando **Django** como framework backend y **Bootstrap** para el diseño frontend. No se debe utilizar `forms.py`. Todo el proceso debe estar debidamente documentado con explicaciones claras para cada paso.
+
+---
+
+## 🔧 Procedimiento Requerido
+
+Realiza los siguientes pasos de manera ordenada y documentada:
+
+1. **Crear el entorno virtual y activarlo**
+   - Instrucciones detalladas para crear y activar el entorno virtual en diferentes sistemas operativos.
+
+2. **Seleccionar el intérprete de Python**
+   - Indicaciones para configurar correctamente el intérprete en tu editor (ej. VS Code).
+
+3. **Instalar Django**
+   - Comando para instalar Django mediante `pip`.
+
+4. **Crear carpetas necesarias dentro de `app_alu`**
+   - Crear la carpeta `static`.
+   - Crear la carpeta `templates`.
+
+5. **Crear archivos HTML en `templates/`**
+   - `base.html`: Plantilla base con estructura HTML5.
+   - `header.html`: Encabezado común (navbar).
+   - `footer.html`: Pie de página.
+   - `inicio.html`: Página principal con tabla de alumnos.
+   - `agregar_alumno.html`: Formulario para agregar alumno.
+   - `info_alumno.html`: Vista detallada del alumno (opcional).
+   - `actualizar_alumno.html`: Formulario para editar alumno.
+
+6. **Contenido del archivo `inicio.html`**
+   - Título claro.
+   - Tabla que muestre la lista de alumnos con las columnas: Nombre, Matrícula y Especialidad.
+   - En cada fila, incluir botones de acción: **Actualizar** y **Borrar**.
+   - Al final de la tabla, agregar un botón claramente visible: **Agregar Alumno**.
+
+7. **Configuraciones en archivos del proyecto**
+   - Realizar las configuraciones necesarias en `settings.py`:
+     - Agregar `app_alu` a `INSTALLED_APPS`.
+     - Configurar `TEMPLATES` para incluir la carpeta `templates`.
+     - Configurar `STATICFILES_DIRS` para incluir la carpeta `static`.
+   - Configurar `urls.py` del proyecto (`Backend_alu/urls.py`) para incluir las URLs de la aplicación.
+
+8. **Diseño y formato**
+   - Utilizar **Bootstrap 5** (vía CDN) para lograr un diseño elegante, moderno y responsive.
+   - Asegurar que todas las páginas extiendan `base.html`.
+
+9. **Lógica del CRUD en `views.py`**
+   - Crear funciones para:
+     - `inicio`: Mostrar lista de alumnos.
+     - `agregar_alumno`: Guardar nuevo alumno.
+     - `actualizar_alumno`: Editar alumno existente.
+     - `borrar_alumno`: Eliminar alumno.
+   - No usar `forms.py`, manejar los datos directamente desde `request.POST`.
+
+10. **Estructura inicial**
+    - Al inicio, crear toda la estructura de carpetas y archivos necesarios.
+    - No olvidar incluir todos los archivos HTML para las operaciones del CRUD.
+
+---
+
+## 📚 Contenido Final Requerido
+
+Al concluir, el documento debe incluir:
+
+- ✅ **Glosario de términos**: Definir y explicar los términos clave utilizados (ej. CRUD, Django, Bootstrap, entorno virtual, etc.).
+- ✅ **Tecnologías utilizadas**: Listar tecnologías del frontend y backend con breves descripciones.
+- ✅ **Resumen del proyecto**: Descripción concisa del sistema, funcionalidades y propósito.
+- ✅ **Enlaces de referencia**: Incluir URLs a documentación oficial de Django, Bootstrap y otros recursos útiles.
+
+---
+
+## 📎 Adjuntos (a considerar después del prompt)
+
+> A continuación, se proporcionan el modelo y las URLs de la aplicación `app_alu`:
+
+### `models.py`
+```python
 class Alumno(models.Model):
     ESPECIALIDAD_CHOICES = [
         ('RH', 'Recursos Humanos'),
-        (ELO', 'Electrónica'),
+        ('ELO', 'Electrónica'),
         ('POG', 'Programación'),
         ('GE', 'Gericultura')
     ]
     nombre = models.CharField(max_length=30)
     especialidad = models.CharField(max_length=100, choices=ESPECIALIDAD_CHOICES, default='RH')
     matricula = models.CharField(max_length=10, unique=True)
-El urls.py
+
+    def __str__(self):
+        return self.nombre
+```
+
+### `urls.py` (de `app_alu`)
+```python
 from django.urls import path
 from . import views
 
@@ -42,8 +116,18 @@ urlpatterns = [
     path("actualizar/<int:student_id>/", views.actualizar_alumno, name="actualizar_alumno"),
     path("borrar/<int:id>/", views.borrar_alumno, name="borrar_alumno"),
 ]
-Al inicio crear la estructura de carpetas y archivos.
-No se te olvide crear los archivos html para las operaciones del CRUD.
+```
+
+---
+
+> ⚠️ **Nota**: Asegúrate de ejecutar las migraciones después de definir el modelo:
+> ```bash
+> python manage.py makemigrations
+> python manage.py migrate
+> ```
+```
+
+Este prompt está listo para ser usado como guía de proyecto para estudiantes o desarrolladores, y puede entregarse directamente en entornos educativos o de trabajo.
 
 
 
